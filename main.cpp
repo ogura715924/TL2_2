@@ -16,9 +16,16 @@ int main(int argc, char* argv[])
 {
 	assert(argc >= NumArgument);
 
+	//COMライブラリの初期化
 	HRESULT hr = CoInitializeEx(nullptr, COINIT_MULTITHREADED);
-	TextureConverter textureConverter;
+	assert(SUCCEEDED(hr));
+
+	//テクスチャコンバーター
+	TextureConverter textureConverter;//(資料だとconvert)
 	textureConverter.ConnvertTextureWICToDDS(argv[kFilePath]);
+
+	//COMライブラリの終了
+	CoUninitialize();
 
 	system("pause");
 	return 0;
